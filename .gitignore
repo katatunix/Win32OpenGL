@@ -1,0 +1,7 @@
+/project/.vs/
+/project/x64/
+/project/*.db
+/project/*.opendb
+/project/*.user
+/build/*.ilk
+/build/*.pdb
