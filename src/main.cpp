@@ -12,6 +12,6 @@ public:
 int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lpCmdLine, int nShowCmd) {
 	MyWindow window(hInst, 800, 480, "Game");
 	DummyLisenter listener;
-	window.show(25, nShowCmd, listener);
+	window.show(30, nShowCmd, listener);
 	return 0;
 }
