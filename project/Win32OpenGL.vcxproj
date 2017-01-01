@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\gl2.c" />
     <ClCompile Include="..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Game.h" />
+    <ClInclude Include="..\src\gl2.h" />
     <ClInclude Include="..\src\MyWindow.h" />
     <ClInclude Include="..\src\MyWindowListener.h" />
     <ClInclude Include="..\src\WglDisplay.h" />
@@ -117,6 +119,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
