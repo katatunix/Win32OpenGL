@@ -1,4 +1,5 @@
 /project/.vs/
+/project/Debug/
 /project/x64/
 /project/*.db
 /project/*.opendb

@@ -22,5 +22,11 @@
     <ClInclude Include="..\src\MyWindowListener.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\WglDisplay.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Game.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

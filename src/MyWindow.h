@@ -8,6 +8,7 @@ class MyWindow {
 
 public:
 	MyWindow(HINSTANCE hInst, int width, int height, const char* title) {
+		const char* WIN_CLASS = "Win Class";
 		WNDCLASSEX wClass;
 		ZeroMemory(&wClass, sizeof(WNDCLASSEX));
 		wClass.cbClsExtra = NULL;
@@ -19,7 +20,7 @@ public:
 		wClass.hIconSm = NULL;
 		wClass.hInstance = hInst;
 		wClass.lpfnWndProc = (WNDPROC)internalWindProc;
-		wClass.lpszClassName = "Window Class";
+		wClass.lpszClassName = WIN_CLASS;
 		wClass.lpszMenuName = NULL;
 		wClass.style = CS_HREDRAW | CS_VREDRAW;
 		RegisterClassEx(&wClass);
@@ -33,7 +34,7 @@ public:
 		const int windowHeight = height + GetSystemMetrics(SM_CYCAPTION) + GetSystemMetrics(CY_FRAME) * 2;
 
 		m_hWnd = CreateWindowEx(NULL,
-			"Window Class",
+			WIN_CLASS,
 			title,
 			DW_STYLE,
 			(screenWidth - windowWidth) / 2,
@@ -54,14 +55,14 @@ public:
 		return m_hDC;
 	}
 
-	void show(int fps, int nShowCmd, MyWindowListener& listener) {
+	void show(int fps, MyWindowListener& listener) {
 		MSG msg;
 		ZeroMemory(&msg, sizeof(MSG));
 
 		unsigned long last = GetTickCount();
 		const unsigned long avai = 1000 / fps;
 
-		ShowWindow(m_hWnd, nShowCmd);
+		ShowWindow(m_hWnd, SW_SHOW);
 		while (true) {
 			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
 				if (msg.message == WM_QUIT)
@@ -76,7 +77,8 @@ public:
 					Sleep(avai - duration);
 				}
 				last = GetTickCount();
-				listener.beat();
+				if (!listener.beat())
+					break;
 			}
 		}
 	}
@@ -104,4 +106,5 @@ private:
 
 	HWND m_hWnd;
 	HDC m_hDC;
+
 };
